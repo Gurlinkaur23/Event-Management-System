@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EMENTITIES.Events>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Events Details</h2>
+
+<p>
+    @Html.ActionLink("Create New Event", "CreateEventsView")
+</p>
+<p>
+    @Html.ActionLink("Create New Registration", "CreateRegistrationsView", "Registration")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditEventsView", new { eventId = item.EventId }) |
+                @Html.ActionLink("Registrations", "Index", "Registration", new { eventId = item.EventId }, null) |
+                @Html.ActionLink("Delete", "DeleteEvent", new { eventId = item.EventId })
+            </td>
+        </tr>
+    }
+
+</table>
